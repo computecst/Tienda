@@ -3,7 +3,6 @@ CREATE TABLE if not exists users(
 	name varchar(20) not null,
 	apaterno varchar(20) not null,
 	amaterno varchar(20) not null,
-	f_nacimiento date not null,
 	num_tarjeta varchar(20) not null,
 	email varchar(30) not null,
 	pass varchar(30) not null,
@@ -16,7 +15,8 @@ insert into users (name, apaterno, amaterno, f_nacimiento, num_tarjeta, email, p
 
 CREATE TABLE if not exists categories(
 	id serial primary key,
-	name varchar(30) not null
+	name varchar(30) not null,
+	code varchar(25) not null
 );
 
 insert into categories (name) values('technology');
