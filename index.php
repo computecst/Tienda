@@ -22,7 +22,7 @@
 	}
 	else{
 		//include_once "private/controller/products.php?f=a";
-		header("location: private/controller/products.php?f=list_products");
+		header("location: private/view/list_products.php");
 	}
 ?>
 

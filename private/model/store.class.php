@@ -66,7 +66,7 @@
 				$num_rows = pg_affected_rows($result);
 				if($num_rows === 1){
 					$result = pg_fetch_array($result, null, PGSQL_ASSOC);
-					return $result['id'];
+					return $result;
 				}
 				else { return false; }
 			}

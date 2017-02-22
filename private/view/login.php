@@ -37,7 +37,14 @@
                 $_SESSION['_id_user'] = $result;
                 $_SESSION['_user'] = $user;
                 $_SESSION['_key'] = "1_tghj23!ASAS45_67i%uyt#re_T3M.,";
-                header("Location: list_products.php");
+                if($result['admin']=='t'){
+                    header("Location: admin/index.php");
+                }
+                else{
+                    header("Location: list_products.php");
+                }
+                
+                
             }
             else{
                 echo "<span>credenciales no validas</span>";
