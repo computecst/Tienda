@@ -10,17 +10,30 @@
 
 		function __construct(){
 			$this->connection = pg_connect("host=localhost dbname=online_store user=santiago password=hola123,") or die('No se ha podido conectar: ' . pg_last_error());
-			
 		}
 		public function get_products(){
 			$lista_user = array();
-			$query = 'SELECT * FROM products';
-			$result = pg_query($query);
+			
+			//$query = "SELECT * FROM products";
+			//
+			$sql = "SELECT d.id, d.name, d.description, d.price, existencia.total
+					from (
+						select d.id, count(d.id) as total
+						from products as p, descripcion_producto as d
+						where p.producto = d.id
+						and p.id NOT IN (select id_product from venta_producto)
+						group by(d.id)
+					) as existencia
+					join descripcion_producto as d
+					on d.id = existencia.id;";
+			//
+
+			$result = pg_query($sql);
 			if($result == true){
 				while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
 					$lista_user += [
 									$line['id'] => array(
-										$line['name'], $line['description'], $line['price'], $line['category']
+										$line['name'], $line['description'], $line['price'], $line['total']
 									)];
 				}
 				return json_encode($lista_user);
@@ -51,7 +64,11 @@
 			$result = pg_query($query);
 			if($result == true){
 				$num_rows = pg_affected_rows($result);
-				return $num_rows;
+				if($num_rows === 1){
+					$result = pg_fetch_array($result, null, PGSQL_ASSOC);
+					return $result['id'];
+				}
+				else { return false; }
 			}
 			else{
 				echo "fallo el query";
@@ -60,6 +77,25 @@
 			//
 		}
 
+	}
+
+	final class Products
+	{
+
+		public function set_product_to_cart($a_user, $a_product){
+			//
+			$con = pg_connect("host=localhost dbname=online_store user=santiago password=hola123,") or die('No se ha podido conectar: ' . pg_last_error());
+			//
+			$query = "INSERT into carrito(id_product, id_user) values($a_product, $a_user);";
+			$result = pg_query($con, $query);
+			if($result == true){
+				return true;
+			}
+			else{
+				echo "fallo el query";
+				return false;
+			}
+		}
 	}
 
 

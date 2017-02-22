@@ -7,7 +7,6 @@
 </head>
 <body>
 
-
 	<header>
 		<?php
 			session_start();
@@ -16,9 +15,7 @@
 			}
 			else{
 				echo "<div> <a href='../controller/login.php'>Log In</a> </div>";
-
 			}
-			//var_dump($_SESSION);
 		?>
 		
 	</header>
@@ -30,22 +27,27 @@ $o_product = new Connection();
 $result = $o_product->get_products();
 $data = json_decode($result);
 
+
+
 echo "<table border=1>
 		<tr><td>nombre</td>
 			<td>descripción</td>
 			<td>precio</td>
+			<td>total</td>
 			<td>Carrito</td>
 		</tr>";
 
 foreach ($data as $key => $value) {
-	echo "<form>";
+	echo "<form method='post' action='../controller/products.php?f=add_cart'>";
+	echo "<input type='hidden' name='p_id_producto' value='$key' />";
 	//echo "<td>".$key[0]."</td>";
 	echo "<tr> <td> <input type='text' value='$value[0]'/></td>";
 	//echo "<tr><td>".$value[0]."</td>";
 	echo "<td> <input type='text' value='$value[1]'/> </td>";
 	//echo "<td>".$value[1]."</td>";
 	echo "<td> <input type='text' value='$value[2]'/> </td>";
-	echo "<td> <input type='submit' value='agregar'/> </td> </tr>";
+	echo "<td> <input type='text' value='$value[3]'/> </td>";
+	echo "<td> <input type='submit' value='agregar' name='add_cart'/> </td> </tr>";
 	//echo "<td>".$value[2]."</td></tr>";
 	//echo "<td>".$value[3]."</td>";
 	echo "</form>";
@@ -78,4 +80,9 @@ echo "<table>";
 
 
 </body>
+	<style>
+		input{
+			border: none;
+		}
+	</style>
 </html>

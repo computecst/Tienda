@@ -29,10 +29,12 @@
             $o_login = new Login();
             $user = $o_login->validation_string($user);
             $pass = $o_login->validation_string($pass);
-            $num_rows = $o_login->get_login($user, $pass);
-
-            if($num_rows === 1){
+            $result = $o_login->get_login($user, $pass);
+            //var_dump($result);
+            //exit;
+            if($result !== false){
                 session_start();
+                $_SESSION['_id_user'] = $result;
                 $_SESSION['_user'] = $user;
                 $_SESSION['_key'] = "1_tghj23!ASAS45_67i%uyt#re_T3M.,";
                 header("Location: list_products.php");
