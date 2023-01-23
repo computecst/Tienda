@@ -11,9 +11,11 @@
 </head>
 <body>
 	<header>
-		<div>
-			<a href="private/view/login.php">Login</a>
-		</div>
+		<ul>
+			<li><a href="private/view/login.php">Login</a></li>
+			<li><a href="private/view/login.php">Login</a></li>
+			<li><a href="private/view/login.php">Login</a></li>
+		</ul>
 	</header>
 <?php
 
