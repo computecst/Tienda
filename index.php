@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<base href="<?php echo BASE_URL; ?>">
+	<!--<base href="<?php //echo BASE_URL; ?>">-->
 	<title>I'm Here</title>
 	<style>
 		header {
