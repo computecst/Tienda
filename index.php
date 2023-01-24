@@ -8,6 +8,11 @@
 <head>
 	<base href="<?php echo BASE_URL; ?>">
 	<title>Welcome</title>
+	<style>
+		header {
+			border: 1px red;
+		}
+	</style>
 </head>
 <body>
 	<header>
