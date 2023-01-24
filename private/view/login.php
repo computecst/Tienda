@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <title>FastPlane</title>
-    <base href="<?php echo BASE_URL; ?>">
+    <!--<base href="<?php //echo BASE_URL; ?>">-->
 </head>
 <body>
     <main id="main">
