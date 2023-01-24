@@ -7,10 +7,10 @@
 <html>
 <head>
 	<base href="<?php echo BASE_URL; ?>">
-	<title>Welcome</title>
+	<title>I'm Here</title>
 	<style>
 		header {
-			border: 1px red;
+			border: 1px solid red;
 		}
 	</style>
 </head>
@@ -22,6 +22,12 @@
 			<li><a href="private/view/login.php">Login</a></li>
 		</ul>
 	</header>
+	<section>
+		<h1>Text</h1>
+	</section>
+	<footer>
+		Bye
+	</footer>
 <?php
 
 	if(isset($_GET['view']) and file_exists('private/controller/'.$_GET['view'] . '.php')) {
